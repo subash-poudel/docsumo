@@ -5,7 +5,7 @@ export function FieldBanner({ title }: { title: string }) {
     .join("")
     .toUpperCase();
   return (
-    <div className="flex flex-col items-center justify-center h-8 bg-red-500 rounded-md align-middle justify-center">
+    <div className="flex flex-col items-center justify-center h-8 bg-red-500 rounded-md align-middle">
       <h1 className="text-xl font-bold text-white p-2">{firstLetters}</h1>
     </div>
   );

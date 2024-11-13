@@ -11,14 +11,13 @@ export function DocumentControls() {
   const tabs: TabInfo[] = sectionsArray.map((s) => {
     return { id: s.id, title: s.title, type: s.type };
   });
-  console.log(sectionsArray);
   return (
     <div className="flex flex-col w-96 h-full bg-green-200">
       Fields
       <Tabs tabs={tabs} />
       <div className="flex-grow bg-blue-100 p-2 flex flex-col gap-2 overflow-y-auto">
         {sections.map((s) => (
-          <DocumentField section={s} />
+          <DocumentField section={s} key={s.id} />
         ))}
       </div>
       <div className="h-16 flex justify-between p-2">
