@@ -1,4 +1,4 @@
-export interface Root {
+export interface PageResponse {
   data: PageData;
   error: string;
   errorCode: string;
