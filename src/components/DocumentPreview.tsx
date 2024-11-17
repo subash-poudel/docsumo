@@ -1,13 +1,11 @@
 import myImage from "../static_data/pages/a2cbec1124234a6d846f908ba9531a2e-1.jpg";
 import { useCallback, useMemo, useRef } from "react";
 import QuickPinchZoom, { make3dTransformValue } from "react-quick-pinch-zoom";
-import { getBboxes, getSection } from "../api/api";
 import { ColoredDiv } from "../widgets/ColoredDiv";
+import { Section } from "../models/section";
 
-export const DocumentPreview = () => {
-  const boxes = getBboxes();
+export const DocumentPreview = ({ sections }: { sections: Section[] }) => {
   const divRef = useRef<HTMLDivElement>();
-
 
   const onUpdate = useCallback(
     ({ x, y, scale }: { x: number; y: number; scale: number }) => {
@@ -21,26 +19,21 @@ export const DocumentPreview = () => {
   );
   const initialScale = 0.5;
 
-  // const allDivs = useMemo(() => {
-  //   return boxes.data.bboxes.map((b, i) => {
-  //     return <ColoredDiv rectangle={b.rectangle} scale={initialScale} key={i} />;
-  //   });
-  // }, []);
-  const {
-    data: { sections: sectionsArray },
-  } = getSection();
   const allDivs = useMemo(() => {
-    const positions = sectionsArray.flatMap(a => a.children).filter((c, i) => {
-      if (!c?.content?.position) {
-        return null;
-      }
-      // return <ColoredDiv rectangle={c.content.position} key={i} />;
-      return c.content.position;
-    });
-    const divs = positions.map((p, i) => <ColoredDiv rectangle={p.content.position} scale={initialScale} key={i} />)
-    console.log('divs', divs);
+    const positions = sections
+      .flatMap((s) => s.children)
+      .filter((c) => {
+        if (!c?.content?.position) {
+          return null;
+        }
+        return c.content.position;
+      });
+    const divs = positions.map((p, i) => (
+      <ColoredDiv rectangle={p.content.position} scale={initialScale} key={i} />
+    ));
     return divs;
-  }, []); 
+  }, [sections]);
+
   const style = {
     left: `${0}px`,
     top: `${0}px`,

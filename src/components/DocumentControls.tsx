@@ -1,14 +1,12 @@
-import { getSection } from "../api/api";
+import { Section } from "../models/section";
 import { Button } from "../widgets/Button";
 import { TabInfo, Tabs } from "../widgets/Tabs";
 import { DocumentField } from "./DocumentField";
 
-export function DocumentControls() {
-  const {
-    data: { sections: sectionsArray },
-  } = getSection();
-  const sections = sectionsArray[0].children;
-  const tabs: TabInfo[] = sectionsArray.map((s) => {
+export function DocumentControls({ sections }: { sections: Section[] }) {
+  const allSections = sections.flatMap((s) => s.children);
+
+  const tabs: TabInfo[] = sections.map((s) => {
     return { id: s.id, title: s.title, type: s.type };
   });
   return (
@@ -16,7 +14,7 @@ export function DocumentControls() {
       Fields
       <Tabs tabs={tabs} />
       <div className="flex-grow bg-blue-100 p-2 flex flex-col gap-2 overflow-y-auto">
-        {sections.map((s) => (
+        {allSections.map((s) => (
           <DocumentField section={s} key={s.id} />
         ))}
       </div>

@@ -4,7 +4,11 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],  theme: {
-    extend: {},
+    extend: {
+      height: {
+        'calc-h-16': 'calc(100% - 4rem)',
+      },
+    },
   },
   plugins: [],
 }
