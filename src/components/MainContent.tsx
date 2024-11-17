@@ -39,6 +39,16 @@ export function MainContent() {
     setSections(newSections);
   }
 
+  function handleSelectAllClicked() {
+    const newSections: SectionUiItem[] = sections.map((section) => {
+      const childrens = section.children.map((c) => {
+        return { ...c, isChecked: true };
+      });
+      return { ...section, children: childrens };
+    });
+    setSections(newSections);
+  }
+
   return (
     <div className="flex flex-col flex-grow">
       <header className="bg-white shadow p-4 h-16">
@@ -51,6 +61,7 @@ export function MainContent() {
           sections={sections}
           onItemChecked={handleSectionChecked}
           onItemDeleted={handleSectionDeleted}
+          onSelectAllClicked={handleSelectAllClicked}
         />
       </div>
     </div>
