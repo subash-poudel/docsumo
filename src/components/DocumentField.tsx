@@ -16,7 +16,9 @@ export function DocumentField({
         <p>{section.label}</p>
         <p>{section?.content?.value}</p>
       </div>
-      <Checkbox section={section} onItemChecked={onItemChecked} />
+      {section?.content?.position?.length > 0 && (
+        <Checkbox section={section} onItemChecked={onItemChecked} />
+      )}
     </div>
   );
 }
