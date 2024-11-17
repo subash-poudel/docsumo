@@ -13,6 +13,7 @@ export function getUiSections() {
         sectionId: s.id,
         isChecked: false,
         color: getRandomColor(),
+        fieldBannerColor: getRandomColor(1),
       };
       return child;
     });

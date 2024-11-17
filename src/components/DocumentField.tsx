@@ -14,9 +14,9 @@ export function DocumentField({
 }) {
   return (
     <div className="flex items-center">
-      <FieldBanner title={section.label} />
+      <FieldBanner title={section.label} color={section.fieldBannerColor}/>
       <div className="flex-grow p-2 justify-center">
-        <p>{section.label}</p>
+        <h2 className="text-md font-bold">{section.label}</h2>
         <p>{section?.content?.value}</p>
       </div>
       {section?.content?.position?.length > 0 && (
