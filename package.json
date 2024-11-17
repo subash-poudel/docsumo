@@ -19,7 +19,8 @@
     "react-modal": "^3.16.1",
     "react-quick-pinch-zoom": "^5.1.0",
     "react-select": "^5.8.3",
-    "react-zoom-pan-pinch": "^3.6.1"
+    "react-zoom-pan-pinch": "^3.6.1",
+    "recoil": "^0.7.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

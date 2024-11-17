@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { themeAtom } from "../atoms/themeAtom";
+import { useRecoilState } from "recoil";
 
 const ThemeToggle = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  // const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useRecoilState(themeAtom);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");

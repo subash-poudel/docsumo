@@ -5,24 +5,15 @@ import { DocumentPreview } from "./DocumentPreview";
 import { getUiSections } from "../helpers/utils";
 import { ConfirmModal } from "./ConfirmModal";
 import { ApprovedModal } from "./ApprovedModal";
-import Select from "react-select";
 import ThemeToggle from "./ThemeToggle";
-
-const options = [
-  { value: "fit", label: "Fit" },
-  { value: "75", label: "75%" },
-  { value: "125", label: "125%" },
-  { value: "150", label: "150%" },
-  { value: "175", label: "175%" },
-  { value: "200", label: "200%" },
-];
+import { ZOOM_OPTIONS, ZoomSelect } from "./ZoomSelect";
 
 export function MainContent() {
   const [sections, setSections] = useState<SectionUiItem[]>(getUiSections());
   const [showConfirmQuestionModal, setShowConfirmQuestionModal] =
     useState(false);
   const [showApprovedModal, setShowApprovedModal] = useState(false);
-  const [zoomLevel, setZoomLevel] = useState(options[0]);
+  const [zoomLevel, setZoomLevel] = useState(ZOOM_OPTIONS[0]);
   // The caller makes changes to sectionUiItem object
   function handleSectionItemPropertyChanged(sectionUiItem: SectionChildUiItem) {
     const newSections: SectionUiItem[] = sections.map((section) => {
@@ -77,15 +68,9 @@ export function MainContent() {
           Review Screen
         </h1>
         <div className="flex gap-3">
-          <Select
-            options={options}
-            placeholder="Select zoom level"
-            value={zoomLevel}
-            onChange={(v) => {
-              if (v) {
-                setZoomLevel(v);
-              }
-            }}
+          <ZoomSelect
+            setZoomLevel={(z) => setZoomLevel(z)}
+            zoomLevel={zoomLevel}
           />
           <ThemeToggle />
         </div>

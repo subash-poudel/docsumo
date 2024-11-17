@@ -22,7 +22,7 @@ export function DocumentField({
   }
   return (
     <div
-      className={`flex items-center border ${border}`}
+      className={`flex items-center border ${border} bg-gray-200 dark:bg-gray-900`}
       tabIndex={section.id}
       onMouseEnter={() => handleFocus(section, true)}
       onMouseLeave={() => handleFocus(section, false)}
