@@ -22,7 +22,6 @@ export function DocumentControls({
     return { id: s.id, title: s.title, type: s.type };
   });
   const selectionCount = allSections.filter((s) => s.isChecked).length;
-  console.log({ selectionCount });
   return (
     <div className="flex flex-col w-96 h-full bg-green-200">
       <Tabs tabs={tabs} />

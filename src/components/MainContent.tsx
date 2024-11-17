@@ -5,13 +5,22 @@ import { DocumentPreview } from "./DocumentPreview";
 import { getUiSections } from "../helpers/utils";
 import { ConfirmModal } from "./ConfirmModal";
 import { ApprovedModal } from "./ApprovedModal";
+import Select from "react-select";
+
+const options = [
+  { value: "fit", label: "Fit" },
+  { value: "125", label: "125%" },
+  { value: "150", label: "150%" },
+  { value: "175", label: "175%" },
+  { value: "200", label: "200%" },
+];
 
 export function MainContent() {
   const [sections, setSections] = useState<SectionUiItem[]>(getUiSections());
   const [showConfirmQuestionModal, setShowConfirmQuestionModal] =
     useState(false);
   const [showApprovedModal, setShowApprovedModal] = useState(false);
-
+  const [zoomLevel, setZoomLevel] = useState(options[0]);
   // The caller makes changes to sectionUiItem object
   function handleSectionItemPropertyChanged(sectionUiItem: SectionChildUiItem) {
     const newSections: SectionUiItem[] = sections.map((section) => {
@@ -61,12 +70,22 @@ export function MainContent() {
 
   return (
     <div className="flex flex-col flex-grow">
-      <header className="bg-white shadow p-4 h-16">
+      <header className="flex  justify-between bg-white shadow p-4 h-16">
         <h1 className="text-2xl font-semibold">Review Screen</h1>
+        <Select
+          options={options}
+          placeholder="Select zoom level"
+          value={zoomLevel}
+          onChange={(v) => {
+            if (v) {
+              setZoomLevel(v);
+            }
+          }}
+        />
       </header>
 
       <div className="flex h-calc-h-16">
-        <DocumentPreview sections={sections} />
+        <DocumentPreview sections={sections} zoomLevel={zoomLevel} />
         <DocumentControls
           sections={sections}
           onItemChecked={handleSectionItemPropertyChanged}
