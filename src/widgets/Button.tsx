@@ -1,5 +1,13 @@
-export const Button: React.FC<HTMLButtonElement> = (props) => {
-  return (
-    <button  {...props} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-gray-600" />
-  );
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  isLoading?: boolean;
 }
+
+export const Button: React.FC<ButtonProps> = (props) => {
+  return (
+    <button
+      {...props}
+      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-gray-600"
+    />
+  );
+};

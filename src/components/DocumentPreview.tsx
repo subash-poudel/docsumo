@@ -72,7 +72,11 @@ export const DocumentPreview = ({
     height: `${2200 * initialScale}px`,
   };
   return (
-    <QuickPinchZoom onUpdate={onUpdate} ref={zoomRef} containerProps={{"data-test": "yes", className: "flex-grow"}}>
+    <QuickPinchZoom
+      onUpdate={onUpdate}
+      ref={zoomRef}
+      containerProps={{ "data-test": "yes", className: "flex-grow" }}
+    >
       <div
         ref={divRef}
         style={style}

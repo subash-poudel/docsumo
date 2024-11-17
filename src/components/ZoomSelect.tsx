@@ -1,15 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Select from "react-select";
 import { useRecoilValue } from "recoil";
 import { themeAtom } from "../atoms/themeAtom";
-
-export const ZOOM_OPTIONS = [
-  { value: "fit", label: "Fit" },
-  { value: "75", label: "75%" },
-  { value: "125", label: "125%" },
-  { value: "150", label: "150%" },
-  { value: "175", label: "175%" },
-  { value: "200", label: "200%" },
-];
+import { ZOOM_OPTIONS } from "../models/constants";
 
 export function ZoomSelect({
   setZoomLevel,
@@ -20,7 +13,7 @@ export function ZoomSelect({
 }) {
   const isDarkMode = useRecoilValue(themeAtom);
   const customStyles = {
-    control: (base: unknown) => ({
+    control: (base: any) => ({
       ...base,
       backgroundColor: isDarkMode ? "#374151" : "#ffffff", // Tailwind's dark gray for dark mode
       borderColor: isDarkMode ? "#4B5563" : "#D1D5DB",
@@ -30,16 +23,16 @@ export function ZoomSelect({
         borderColor: isDarkMode ? "#6B7280" : "#9CA3AF",
       },
     }),
-    menu: (base) => ({
+    menu: (base: any) => ({
       ...base,
       backgroundColor: isDarkMode ? "#1F2937" : "#ffffff", // Tailwind's dark gray for dropdown
       color: isDarkMode ? "#ffffff" : "#000000",
     }),
-    singleValue: (base) => ({
+    singleValue: (base: any) => ({
       ...base,
       color: isDarkMode ? "#ffffff" : "#000000",
     }),
-    option: (base, { isFocused }) => ({
+    option: (base: any, { isFocused }: { isFocused: boolean }) => ({
       ...base,
       backgroundColor: isFocused
         ? isDarkMode
@@ -51,7 +44,6 @@ export function ZoomSelect({
       color: isDarkMode ? "#ffffff" : "#000000",
     }),
   };
-  console.log("is", isDarkMode);
   return (
     <Select<{ label: string; value: string }>
       key={isDarkMode ? 1 : 0}

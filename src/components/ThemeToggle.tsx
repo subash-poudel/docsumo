@@ -11,7 +11,7 @@ const ThemeToggle = () => {
     if (savedTheme) {
       setIsDarkMode(savedTheme === "dark");
     }
-  }, []);
+  }, [setIsDarkMode]);
 
   const toggleTheme = () => {
     const newTheme = isDarkMode ? "light" : "dark";

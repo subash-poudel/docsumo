@@ -6,7 +6,8 @@ import { getUiSections } from "../helpers/utils";
 import { ConfirmModal } from "./ConfirmModal";
 import { ApprovedModal } from "./ApprovedModal";
 import ThemeToggle from "./ThemeToggle";
-import { ZOOM_OPTIONS, ZoomSelect } from "./ZoomSelect";
+import { ZoomSelect } from "./ZoomSelect";
+import { ZOOM_OPTIONS } from "../models/constants";
 
 export function MainContent() {
   const [sections, setSections] = useState<SectionUiItem[]>(getUiSections());
