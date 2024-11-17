@@ -19,6 +19,8 @@ export function DocumentControls({
   const tabs: TabInfo[] = sections.map((s) => {
     return { id: s.id, title: s.title, type: s.type };
   });
+  const selectionCount = allSections.filter((s) => s.isChecked).length;
+  console.log({ selectionCount });
   return (
     <div className="flex flex-col w-96 h-full bg-green-200">
       <Tabs tabs={tabs} />
@@ -34,7 +36,7 @@ export function DocumentControls({
       </div>
       <div className="h-16 flex justify-between p-2">
         <Button onClick={onSelectAllClicked}>Select All</Button>
-        <Button>Confirm</Button>
+        <Button disabled={selectionCount === 0}>Confirm</Button>
       </div>
     </div>
   );
