@@ -29,6 +29,7 @@ export interface SectionChildUiItem extends SectionChild {
   isChecked: boolean;
   color: string;
   fieldBannerColor: string;
+  isFocused: boolean;
 }
 
 export interface SectionChild {

@@ -12,7 +12,8 @@ export function MainContent() {
     useState(false);
   const [showApprovedModal, setShowApprovedModal] = useState(false);
 
-  function handleSectionChecked(sectionUiItem: SectionChildUiItem) {
+  // The caller makes changes to sectionUiItem object
+  function handleSectionItemPropertyChanged(sectionUiItem: SectionChildUiItem) {
     const newSections: SectionUiItem[] = sections.map((section) => {
       if (section.id === sectionUiItem.sectionId) {
         const childrens = section.children.map((c) => {
@@ -68,7 +69,7 @@ export function MainContent() {
         <DocumentPreview sections={sections} />
         <DocumentControls
           sections={sections}
-          onItemChecked={handleSectionChecked}
+          onItemChecked={handleSectionItemPropertyChanged}
           onItemDeleted={handleSectionDeleted}
           onSelectAllClicked={handleSelectAllClicked}
           onConfirmClicked={handleConfirmButtonClicked}

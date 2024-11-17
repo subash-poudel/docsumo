@@ -14,6 +14,7 @@ export function getUiSections() {
         isChecked: false,
         color: getRandomColor(),
         fieldBannerColor: getRandomColor(1),
+        isFocused: false,
       };
       return child;
     });

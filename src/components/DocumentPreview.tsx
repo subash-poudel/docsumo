@@ -26,7 +26,7 @@ export const DocumentPreview = ({
   const allDivs = useMemo(() => {
     const positions = sections
       .flatMap((s) => s.children)
-      .filter((c) => c.isChecked)
+      // .filter((c) => c.isChecked)
       .filter((c) => {
         if (!c?.content?.position) {
           return null;
@@ -35,6 +35,7 @@ export const DocumentPreview = ({
       });
     const divs = positions.map((p, i) => (
       <ColoredDiv
+        section={p}
         rectangle={p.content.position}
         scale={initialScale}
         color={p.color}
