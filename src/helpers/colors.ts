@@ -1,4 +1,4 @@
-const transparancy = 0.2;
+const transparancy = 0.3;
 const colors = [
   `rgba(255, 0, 0, ${transparancy})`,
   `rgba(0, 255, 0, ${transparancy})`,
