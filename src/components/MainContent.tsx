@@ -6,6 +6,7 @@ import { getUiSections } from "../helpers/utils";
 import { ConfirmModal } from "./ConfirmModal";
 import { ApprovedModal } from "./ApprovedModal";
 import Select from "react-select";
+import ThemeToggle from "./ThemeToggle";
 
 const options = [
   { value: "fit", label: "Fit" },
@@ -70,19 +71,24 @@ export function MainContent() {
   }
 
   return (
-    <div className="flex flex-col flex-grow">
-      <header className="flex  justify-between bg-white shadow p-4 h-16">
-        <h1 className="text-2xl font-semibold">Review Screen</h1>
-        <Select
-          options={options}
-          placeholder="Select zoom level"
-          value={zoomLevel}
-          onChange={(v) => {
-            if (v) {
-              setZoomLevel(v);
-            }
-          }}
-        />
+    <div className="flex flex-col flex-grow ">
+      <header className="flex  justify-between bg-white dark:bg-gray-900 shadow p-4 h-16">
+        <h1 className="text-2xl font-semibold text-black dark:text-white">
+          Review Screen
+        </h1>
+        <div className="flex gap-3">
+          <Select
+            options={options}
+            placeholder="Select zoom level"
+            value={zoomLevel}
+            onChange={(v) => {
+              if (v) {
+                setZoomLevel(v);
+              }
+            }}
+          />
+          <ThemeToggle />
+        </div>
       </header>
 
       <div className="flex h-calc-h-16">

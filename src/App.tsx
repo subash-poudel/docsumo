@@ -1,12 +1,11 @@
-import { MainContent } from './components/MainContent'
+import { MainContent } from "./components/MainContent";
 
 function App() {
-
   return (
-    <div className='bg-gray-100 h-screen flex'>
+    <div className="h-screen flex bg-white dark:bg-gray-900 text-black dark:text-white">
       <MainContent />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
