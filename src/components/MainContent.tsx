@@ -23,6 +23,22 @@ export function MainContent() {
     setSections(newSections);
   }
 
+  function handleSectionDeleted(sectionUiItem: SectionChildUiItem) {
+    const newSections: SectionUiItem[] = sections.map((section) => {
+      if (section.id === sectionUiItem.sectionId) {
+        const childrens = section.children.filter((c) => {
+          if (c.id === sectionUiItem.id) {
+            return null;
+          }
+          return c;
+        });
+        return { ...section, children: childrens };
+      }
+      return section;
+    });
+    setSections(newSections);
+  }
+
   return (
     <div className="flex flex-col flex-grow">
       <header className="bg-white shadow p-4 h-16">
@@ -34,6 +50,7 @@ export function MainContent() {
         <DocumentControls
           sections={sections}
           onItemChecked={handleSectionChecked}
+          onItemDeleted={handleSectionDeleted}
         />
       </div>
     </div>
