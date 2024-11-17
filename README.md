@@ -25,3 +25,15 @@ Completed major aspects of the assignment as designed.
 * widgets -> Reuseable react components
 
 ## Deployment
+
+[Live Version](https://docsumo.netlify.app/)
+
+## Light Mode
+![Light Mode](./screenshots/light_mode.png)
+
+
+## Dark Mode
+![Light Mode](./screenshots/dark_mode.png)
+
+## Lighthouse Score
+![Light Mode](./screenshots/lighthouse.png)
