@@ -8,11 +8,13 @@ export function DocumentControls({
   onItemChecked,
   onItemDeleted,
   onSelectAllClicked,
+  onConfirmClicked,
 }: {
   sections: SectionUiItem[];
   onItemChecked: (item: SectionChildUiItem) => void;
   onItemDeleted: (item: SectionChildUiItem) => void;
   onSelectAllClicked: () => void;
+  onConfirmClicked: () => void;
 }) {
   const allSections = sections.flatMap((s) => s.children);
 
@@ -36,7 +38,9 @@ export function DocumentControls({
       </div>
       <div className="h-16 flex justify-between p-2">
         <Button onClick={onSelectAllClicked}>Select All</Button>
-        <Button disabled={selectionCount === 0}>Confirm</Button>
+        <Button disabled={selectionCount === 0} onClick={onConfirmClicked}>
+          Confirm
+        </Button>
       </div>
     </div>
   );

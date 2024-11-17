@@ -3,9 +3,14 @@ import { SectionChildUiItem, SectionUiItem } from "../models/section";
 import { DocumentControls } from "./DocumentControls";
 import { DocumentPreview } from "./DocumentPreview";
 import { getUiSections } from "../helpers/utils";
+import { ConfirmModal } from "./ConfirmModal";
+import { ApprovedModal } from "./ApprovedModal";
 
 export function MainContent() {
   const [sections, setSections] = useState<SectionUiItem[]>(getUiSections());
+  const [showConfirmQuestionModal, setShowConfirmQuestionModal] =
+    useState(false);
+  const [showApprovedModal, setShowApprovedModal] = useState(false);
 
   function handleSectionChecked(sectionUiItem: SectionChildUiItem) {
     const newSections: SectionUiItem[] = sections.map((section) => {
@@ -49,6 +54,10 @@ export function MainContent() {
     setSections(newSections);
   }
 
+  function handleConfirmButtonClicked() {
+    setShowConfirmQuestionModal(true);
+  }
+
   return (
     <div className="flex flex-col flex-grow">
       <header className="bg-white shadow p-4 h-16">
@@ -62,8 +71,22 @@ export function MainContent() {
           onItemChecked={handleSectionChecked}
           onItemDeleted={handleSectionDeleted}
           onSelectAllClicked={handleSelectAllClicked}
+          onConfirmClicked={handleConfirmButtonClicked}
         />
       </div>
+      <ConfirmModal
+        isOpen={showConfirmQuestionModal}
+        setIsOpen={setShowConfirmQuestionModal}
+        onConfirmed={() => {
+          setShowConfirmQuestionModal(false);
+          setShowApprovedModal(true);
+        }}
+      />
+      <ApprovedModal
+        sections={sections}
+        isOpen={showApprovedModal}
+        setIsOpen={setShowApprovedModal}
+      />
     </div>
   );
 }
