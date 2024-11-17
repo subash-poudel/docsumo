@@ -1,8 +1,14 @@
-import { SectionChild } from "../models/section";
+import { SectionChildUiItem } from "../models/section";
 import { Checkbox } from "../widgets/Checkbox";
 import { FieldBanner } from "../widgets/FieldBanner";
 
-export function DocumentField({ section }: { section: SectionChild }) {
+export function DocumentField({
+  section,
+  onItemChecked,
+}: {
+  section: SectionChildUiItem;
+  onItemChecked: (item: SectionChildUiItem) => void;
+}) {
   return (
     <div className="flex align-middle">
       <FieldBanner title={section.label} />
@@ -10,7 +16,7 @@ export function DocumentField({ section }: { section: SectionChild }) {
         <p>{section.label}</p>
         <p>{section?.content?.value}</p>
       </div>
-      <Checkbox />
+      <Checkbox section={section} onItemChecked={onItemChecked} />
     </div>
   );
 }

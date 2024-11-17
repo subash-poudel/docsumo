@@ -1,11 +1,28 @@
-import { getSection } from "../api/api";
+import { useState } from "react";
+import { SectionChildUiItem, SectionUiItem } from "../models/section";
 import { DocumentControls } from "./DocumentControls";
 import { DocumentPreview } from "./DocumentPreview";
+import { getUiSections } from "../helpers/utils";
 
 export function MainContent() {
-  const {
-    data: { sections },
-  } = getSection();
+  const [sections, setSections] = useState<SectionUiItem[]>(getUiSections());
+
+  function handleSectionChecked(sectionUiItem: SectionChildUiItem) {
+    const newSections: SectionUiItem[] = sections.map((section) => {
+      if (section.id === sectionUiItem.sectionId) {
+        const childrens = section.children.map((c) => {
+          if (c.id === sectionUiItem.id) {
+            return { ...sectionUiItem };
+          }
+          return c;
+        });
+        return { ...section, children: childrens };
+      }
+      return section;
+    });
+    setSections(newSections);
+  }
+
   return (
     <div className="flex flex-col flex-grow">
       <header className="bg-white shadow p-4 h-16">
@@ -13,8 +30,11 @@ export function MainContent() {
       </header>
 
       <div className="flex h-calc-h-16">
-        <DocumentPreview sections={sections}/>
-        <DocumentControls sections={sections} />
+        <DocumentPreview sections={sections} />
+        <DocumentControls
+          sections={sections}
+          onItemChecked={handleSectionChecked}
+        />
       </div>
     </div>
   );

@@ -19,6 +19,17 @@ export interface Section {
   type: string;
 }
 
+export interface SectionUiItem extends Section {
+  isChecked: boolean;
+  children: SectionChildUiItem[];
+}
+
+export interface SectionChildUiItem extends SectionChild {
+  sectionId: number;
+  isChecked: boolean;
+  color: string;
+}
+
 export interface SectionChild {
   acc: number;
   content: SectionChildContent;

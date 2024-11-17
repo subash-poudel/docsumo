@@ -2,9 +2,13 @@ import myImage from "../static_data/pages/a2cbec1124234a6d846f908ba9531a2e-1.jpg
 import { useCallback, useMemo, useRef } from "react";
 import QuickPinchZoom, { make3dTransformValue } from "react-quick-pinch-zoom";
 import { ColoredDiv } from "../widgets/ColoredDiv";
-import { Section } from "../models/section";
+import { SectionUiItem } from "../models/section";
 
-export const DocumentPreview = ({ sections }: { sections: Section[] }) => {
+export const DocumentPreview = ({
+  sections,
+}: {
+  sections: SectionUiItem[];
+}) => {
   const divRef = useRef<HTMLDivElement>();
 
   const onUpdate = useCallback(
@@ -22,6 +26,7 @@ export const DocumentPreview = ({ sections }: { sections: Section[] }) => {
   const allDivs = useMemo(() => {
     const positions = sections
       .flatMap((s) => s.children)
+      .filter((c) => c.isChecked)
       .filter((c) => {
         if (!c?.content?.position) {
           return null;
@@ -29,7 +34,12 @@ export const DocumentPreview = ({ sections }: { sections: Section[] }) => {
         return c.content.position;
       });
     const divs = positions.map((p, i) => (
-      <ColoredDiv rectangle={p.content.position} scale={initialScale} key={i} />
+      <ColoredDiv
+        rectangle={p.content.position}
+        scale={initialScale}
+        color={p.color}
+        key={i}
+      />
     ));
     return divs;
   }, [sections]);
