@@ -38,7 +38,6 @@ export const DocumentPreview = ({
     if (zoomComponent) {
       zoomComponent.scaleTo({ x: 0, y: 0, scale: scale });
     }
-    // onUpdate({ x: 0, y: 0, scale });
   }, [zoomLevel.value]);
 
   const initialScale = 0.5;
@@ -46,7 +45,6 @@ export const DocumentPreview = ({
   const allDivs = useMemo(() => {
     const positions = sections
       .flatMap((s) => s.children)
-      // .filter((c) => c.isChecked)
       .filter((c) => {
         if (!c?.content?.position) {
           return null;
